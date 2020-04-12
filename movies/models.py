@@ -3,7 +3,6 @@ from datetime import date
 
 from django.urls import reverse
 
-
 class Category(models.Model):
     """Категории"""
     name = models.CharField("Категория", max_length=150)
@@ -31,6 +30,9 @@ class Actor(models.Model):
     class Meta:
         verbose_name = "Актеры и режиссеры"
         verbose_name_plural = "Актеры и режиссеры"
+
+    def get_absolute_url(self):
+        return reverse('actor_detail', kwargs={'slug': self.name})
 
 
 class Genre(models.Model):
